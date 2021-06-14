@@ -11,6 +11,6 @@ public class CisTest {
         Cis cis = new Cis();
         JFrame frame = cis.getFrame();
 
-        assertEquals(frame.getTitle(), CIS.TITLE);
+        assertEquals(frame.getTitle(), Cis.TITLE);
     }
 }
