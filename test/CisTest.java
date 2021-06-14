@@ -12,5 +12,7 @@ public class CisTest {
         JFrame frame = cis.getFrame();
 
         assertEquals(frame.getTitle(), Cis.TITLE);
+        assertEquals(frame.getWidth(), Cis.WIDTH);
+        assertEquals(frame.getHeight(), Cis.HEIGHT);
     }
 }
