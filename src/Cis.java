@@ -15,6 +15,7 @@ public class Cis {
     Cis() {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(new CoursePanel());
     }
 
     public JFrame getFrame() {
