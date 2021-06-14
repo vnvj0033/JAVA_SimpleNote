@@ -14,12 +14,11 @@ public class CoursePanel extends JPanel {
     private void createLayout() {
         setLayout(new BorderLayout());
 
-        final int pad = 6;
-        Border emptyBorder = BorderFactory.createEmptyBorder(pad, pad, pad, pad);
-        Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.RAISED);
-        Border titleBorder = BorderFactory.createTitledBorder(bevelBorder, "Courses");
-        setBorder(BorderFactory.createCompoundBorder(emptyBorder, titleBorder));
+        createBorder();
+        createTable();
+    }
 
+    private void createTable() {
         JTable table = new JTable();
 
         table.setShowGrid(false);
@@ -27,5 +26,15 @@ public class CoursePanel extends JPanel {
 
         JScrollPane coursesScroll = new JScrollPane(table);
         coursesScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        add(coursesScroll);
+    }
+
+    private void createBorder() {
+        final int pad = 6;
+        Border emptyBorder = BorderFactory.createEmptyBorder(pad, pad, pad, pad);
+        Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.RAISED);
+        Border titleBorder = BorderFactory.createTitledBorder(bevelBorder, "Courses");
+        setBorder(BorderFactory.createCompoundBorder(emptyBorder, titleBorder));
     }
 }

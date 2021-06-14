@@ -10,4 +10,5 @@ public class CoursePanelTest {
 
         assertEquals(panel.getName(), CoursePanel.NAME);
     }
+
 }
