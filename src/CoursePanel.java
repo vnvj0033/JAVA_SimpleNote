@@ -19,5 +19,13 @@ public class CoursePanel extends JPanel {
         Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.RAISED);
         Border titleBorder = BorderFactory.createTitledBorder(bevelBorder, "Courses");
         setBorder(BorderFactory.createCompoundBorder(emptyBorder, titleBorder));
+
+        JTable table = new JTable();
+
+        table.setShowGrid(false);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        JScrollPane coursesScroll = new JScrollPane(table);
+        coursesScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     }
 }
