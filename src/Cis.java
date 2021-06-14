@@ -8,6 +8,10 @@ public class Cis {
 
     private JFrame frame = new JFrame(TITLE);
 
+    public static void main(String[] args) {
+        new Cis().show();
+    }
+
     Cis() {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
