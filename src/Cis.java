@@ -16,4 +16,8 @@ public class Cis {
     public JFrame getFrame() {
         return frame;
     }
+
+    public void show() {
+        frame.setVisible(true);
+    }
 }
