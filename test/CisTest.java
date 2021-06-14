@@ -15,5 +15,6 @@ public class CisTest {
 
         assertEquals(frame.getWidth(), Cis.WIDTH);
         assertEquals(frame.getHeight(), Cis.HEIGHT);
+        assertEquals(frame.getDefaultCloseOperation(), JFrame.DISPOSE_ON_CLOSE);
     }
 }
