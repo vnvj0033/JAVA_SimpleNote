@@ -31,6 +31,7 @@ public class Cis {
     }
 
     public CoursePanel getPanel() {
+        return panel;
     }
 
     private void addButtonClickListener() {
