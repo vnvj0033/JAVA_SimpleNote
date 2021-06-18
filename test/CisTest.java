@@ -3,6 +3,9 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,6 +36,7 @@ public class CisTest {
     }
 
     Boolean wasClick;
+
     @Test
     void testButtonListener() {
         JButton button = new JButton();
@@ -56,5 +60,41 @@ public class CisTest {
 
         assertEquals(model.getCourse(0).getText(), "ATDD");
         assertEquals(field.getText(), "");
+    }
+
+    @Test
+    void testSearchListener() throws AWTException {
+        Robot robot = new Robot();
+
+        CoursePanel panel = cis.getPanel();
+
+        JButton button = panel.getAddButton();
+        JTextField field = panel.getDepartmentTextField();
+
+        field.setText("ATDD");
+        button.doClick();
+
+        JTextField searchField = panel.getDepartmentTextField();
+
+        Point point = searchField.getLocationOnScreen();
+        robot.mouseMove(point.x, point.y);
+
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+        robot.keyPress('1');
+        robot.keyRelease('1');
+
+        assertEquals(panel.getTableModel().getRowCount(), 0);
+
+        searchField.setText("");
+
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+        robot.keyPress('A');
+        robot.keyRelease('A');
+
+        assertEquals(panel.getTableModel().getRowCount(), 1);
     }
 }
