@@ -2,17 +2,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TodoTest {
+public class NoteTest {
 
     @Test
     void testCreate() {
-        String departmentName = "TDD^^";
-        Todo todo = new Todo();
-        Todo todo1 = new Todo(departmentName);
+        String departmentName = "SimpleText^^";
+        Note note = new Note();
+        Note note1 = new Note(departmentName);
 
-        todo.setText(departmentName);
+        note.setText(departmentName);
 
-        assertEquals(todo.getText(), departmentName);
-        assertEquals(todo1.getText(), departmentName);
+        assertEquals(note.getText(), departmentName);
+        assertEquals(note1.getText(), departmentName);
     }
 }

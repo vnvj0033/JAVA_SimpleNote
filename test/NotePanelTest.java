@@ -5,21 +5,21 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TodoPanelTest {
+public class NotePanelTest {
 
     @Test
     void testCreate() {
-        CoursePanel panel = new CoursePanel();
+        NotePanel panel = new NotePanel();
         panel.setVisible(true);
 
-        assertEquals(panel.getName(), CoursePanel.NAME);
+        assertEquals(panel.getName(), NotePanel.NAME);
 
         JButton button = panel.getAddButton();
         assertEquals(button.getText(), "Add");
         assertTrue(button.isVisible());
 
-        JLabel departmentLabel = panel.getDepartmentLabel();
-        assertEquals(departmentLabel.getText(), "Department");
+        JLabel departmentLabel = panel.getNoteTextLabel();
+        assertEquals(departmentLabel.getText(), "text");
         assertTrue(departmentLabel.isVisible());
 
         JLabel searchLabel = panel.getSearchLabel();

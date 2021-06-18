@@ -2,21 +2,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TodoModelTest {
+public class NoteModelTest {
     @Test
     void testAddCourse() {
-        TodoTableModel model = new TodoTableModel();
-        Todo todo = new Todo("TDD");
+        NoteTableModel model = new NoteTableModel();
+        Note note = new Note("TDD");
 
-        model.add(todo);
+        model.add(note);
 
         assertEquals(model.getRowCount(), 1);
-        assertEquals(model.getTodo(0), todo);
+        assertEquals(model.getTodo(0), note);
 
-        Todo todo1 = new Todo("TDD2");
-        model.add(todo1);
+        Note note1 = new Note("TDD2");
+        model.add(note1);
 
         assertEquals(model.getRowCount(), 2);
-        assertEquals(model.getTodo(1), todo1);
+        assertEquals(model.getTodo(1), note1);
     }
 }

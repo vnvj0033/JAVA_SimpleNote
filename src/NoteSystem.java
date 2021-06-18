@@ -2,22 +2,21 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class TodoSystem {
-    static final String TITLE = "course info system";
+public class NoteSystem {
+    static final String TITLE = "simple note";
     static final int WIDTH = 300;
     static final int HEIGHT = 400;
 
     private JFrame frame = new JFrame(TITLE);
 
-    private CoursePanel panel = new CoursePanel();
+    private NotePanel panel = new NotePanel();
 
-    KeyRelease key = new KeyRelease();
 
     public static void main(String[] args) {
-        new TodoSystem().show();
+        new NoteSystem().show();
     }
 
-    TodoSystem() {
+    NoteSystem() {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(panel);
@@ -33,49 +32,38 @@ public class TodoSystem {
         return frame;
     }
 
-    public CoursePanel getPanel() {
+    public NotePanel getPanel() {
         return panel;
     }
 
     private void addButtonClickListener() {
         JButton addButton = panel.getAddButton();
-        JTextField textField = panel.getDepartmentTextField();
-        TodoTableModel model = panel.getTableModel();
-        JTable table = panel.getTable();
 
-        addButton.addActionListener(e -> {
+        JTextField textField = panel.getNoteTextField();
+        AddEvent addEvent = new AddEvent(panel);
 
-            if (textField.getText().length() == 0)
-                return;
-
-            panel.getSearchTextField().setText(null);
-            model.add(new Todo(textField.getText()));
-            table.setModel(model);
-            textField.setText(null);
-        });
+        addButton.addActionListener(e -> addEvent.clickEvent());
 
         textField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == 10)
-                    addButton.doClick();
+                addEvent.enterEvent(e);
             }
         });
     }
     private void addSearchListener() {
         JTextField field = panel.getSearchTextField();
-        JTable table = panel.getTable();
-        TodoTableModel model = panel.getTableModel();
+        KeyRelease key = new KeyRelease();
 
         key.setSearchFiled(field);
-        key.setTable(table);
-        key.setModel(model);
+        key.setTable(panel.getTable());
+        key.setModel(panel.getTableModel());
 
         field.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                key.releas();
+                key.event();
             }
         });
     }

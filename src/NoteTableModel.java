@@ -2,20 +2,20 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodoTableModel extends AbstractTableModel {
-    List<Todo> todos = new ArrayList<>();
+public class NoteTableModel extends AbstractTableModel {
+    List<Note> notes = new ArrayList<>();
 
-    public void add(Todo todo) {
-        todos.add(todo);
-        fireTableRowsInserted(todos.size() - 1, todos.size());
+    public void add(Note note) {
+        notes.add(note);
+        fireTableRowsInserted(notes.size() - 1, notes.size());
     }
 
-    public List<Todo> getTodos() {
-        return todos;
+    public List<Note> getTodos() {
+        return notes;
     }
 
-    public Todo getTodo(int index) {
-        return todos.get(index);
+    public Note getTodo(int index) {
+        return notes.get(index);
     }
 
     public int getSize() {
@@ -23,12 +23,12 @@ public class TodoTableModel extends AbstractTableModel {
     }
 
     public String getText(int index) {
-        return todos.get(index).getText();
+        return notes.get(index).getText();
     }
 
     @Override
     public int getRowCount() {
-        return todos.size();
+        return notes.size();
     }
 
     @Override
@@ -38,6 +38,6 @@ public class TodoTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return todos.get(rowIndex).getText();
+        return notes.get(rowIndex).getText();
     }
 }

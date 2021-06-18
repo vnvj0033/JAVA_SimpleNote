@@ -6,20 +6,20 @@ import java.awt.*;
 import static java.awt.GridBagConstraints.*;
 import static java.awt.GridBagConstraints.HORIZONTAL;
 
-public class CoursePanel extends JPanel {
-    public static final String NAME = "course panel";
+public class NotePanel extends JPanel {
+    public static final String NAME = "note panel";
 
-    private TodoTableModel tableModel = new TodoTableModel();
+    private NoteTableModel tableModel = new NoteTableModel();
 
     private JTable table = new JTable(tableModel);
     private JButton addButton = new JButton("Add");
-    private JTextField departmentTextField = new JTextField();
+    private JTextField noteTextField = new JTextField();
     private JTextField searchField = new JTextField();
-    private JLabel departmentLabel = new JLabel("Department");
+    private JLabel noteTextLabel = new JLabel("text");
     private JLabel searchLabel = new JLabel("Search");
 
 
-    CoursePanel() {
+    NotePanel() {
         setName(NAME);
         createLayout();
     }
@@ -30,7 +30,7 @@ public class CoursePanel extends JPanel {
         final int pad = 6;
         Border emptyBorder = BorderFactory.createEmptyBorder(pad, pad, pad, pad);
         Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.RAISED);
-        Border titleBorder = BorderFactory.createTitledBorder(bevelBorder, "Courses");
+        Border titleBorder = BorderFactory.createTitledBorder(bevelBorder, "Notes");
         setBorder(BorderFactory.createCompoundBorder(emptyBorder, titleBorder));
 
         add(createTable(), BorderLayout.CENTER);
@@ -74,18 +74,18 @@ public class CoursePanel extends JPanel {
 
         JPanel panel = new JPanel(layout);
 
-        departmentTextField.setColumns(20);
+        noteTextField.setColumns(20);
 
         Insets insets = new Insets(3, 3, 3, 3);
 
-        layout.setConstraints(departmentLabel, new GridBagConstraints(
+        layout.setConstraints(noteTextLabel, new GridBagConstraints(
                 0, 0,
                 1, 1,
                 40, 1,
                 LINE_END, NONE,
                 insets,
                 0, 0));
-        layout.setConstraints(departmentTextField, new GridBagConstraints(
+        layout.setConstraints(noteTextField, new GridBagConstraints(
                 1, 0,
                 2, 1,
                 60, 1,
@@ -93,8 +93,8 @@ public class CoursePanel extends JPanel {
                 insets,
                 0, 0));
 
-        panel.add(departmentLabel);
-        panel.add(departmentTextField);
+        panel.add(noteTextLabel);
+        panel.add(noteTextField);
 
         return panel;
     }
@@ -103,12 +103,12 @@ public class CoursePanel extends JPanel {
         return addButton;
     }
 
-    public TodoTableModel getTableModel() {
+    public NoteTableModel getTableModel() {
         return tableModel;
     }
 
-    public JTextField getDepartmentTextField() {
-        return departmentTextField;
+    public JTextField getNoteTextField() {
+        return noteTextField;
     }
 
     public JTextField getSearchTextField() {return searchField;}
@@ -117,8 +117,8 @@ public class CoursePanel extends JPanel {
         return table;
     }
 
-    public JLabel getDepartmentLabel() {
-        return departmentLabel;
+    public JLabel getNoteTextLabel() {
+        return noteTextLabel;
     }
 
     public JLabel getSearchLabel() {

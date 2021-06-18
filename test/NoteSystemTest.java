@@ -6,15 +6,15 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TotoSystemTest {
-    TodoSystem todoSys;
+public class NoteSystemTest {
+    NoteSystem todoSys;
     JFrame frame;
     KeyRelease keyRelease;
     JTable table;
 
     @BeforeEach
     void setUp() {
-        todoSys = new TodoSystem();
+        todoSys = new NoteSystem();
         frame = todoSys.getFrame();
         keyRelease = new KeyRelease();
         table = todoSys.getPanel().getTable();
@@ -22,10 +22,10 @@ public class TotoSystemTest {
 
     @Test
     void testCreate() {
-        assertEquals(frame.getTitle(), TodoSystem.TITLE);
+        assertEquals(frame.getTitle(), NoteSystem.TITLE);
         assertEquals(frame.getDefaultCloseOperation(), JFrame.DISPOSE_ON_CLOSE);
-        assertEquals(frame.getWidth(), TodoSystem.WIDTH);
-        assertEquals(frame.getHeight(), TodoSystem.HEIGHT);
+        assertEquals(frame.getWidth(), NoteSystem.WIDTH);
+        assertEquals(frame.getHeight(), NoteSystem.HEIGHT);
     }
 
     @Test
@@ -50,11 +50,11 @@ public class TotoSystemTest {
 
     @Test
     void testAddCourse() {
-        CoursePanel panel = todoSys.getPanel();
+        NotePanel panel = todoSys.getPanel();
 
         JButton button = panel.getAddButton();
-        JTextField field = panel.getDepartmentTextField();
-        TodoTableModel model = panel.getTableModel();
+        JTextField field = panel.getNoteTextField();
+        NoteTableModel model = panel.getTableModel();
 
         field.setText("ATDD");
         button.doClick();
@@ -79,12 +79,12 @@ public class TotoSystemTest {
 
     @Test
     void testSearchListener() {
-        CoursePanel panel = todoSys.getPanel();
+        NotePanel panel = todoSys.getPanel();
 
         JButton button = panel.getAddButton();
-        JTextField field = panel.getDepartmentTextField();
-        TodoTableModel model = panel.getTableModel();
-        JTextField searchField = panel.getDepartmentTextField();
+        JTextField field = panel.getNoteTextField();
+        NoteTableModel model = panel.getTableModel();
+        JTextField searchField = panel.getNoteTextField();
 
         field.setText("ATDD");
         button.doClick();
@@ -97,12 +97,12 @@ public class TotoSystemTest {
         assertFiledInput(searchField, "1", 0);
         assertFiledInput(searchField, "A", 1);
 
-        assertEquals(((TodoTableModel) table.getModel()).getTodo(0).getText(), "ATDD");
+        assertEquals(((NoteTableModel) table.getModel()).getTodo(0).getText(), "ATDD");
     }
 
     private void textInput(JTextField field, String text) {
         field.setText(text);
-        keyRelease.releas();
+        keyRelease.event();
     }
 
     private void assertFiledInput(JTextField field, String text, int size) {
