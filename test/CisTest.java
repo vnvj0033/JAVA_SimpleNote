@@ -31,4 +31,15 @@ public class CisTest {
 
         assertTrue(frame.isVisible());
     }
+
+    Boolean wasClick;
+    @Test
+    void testButtonListener() {
+        JButton button = new JButton();
+        wasClick = false;
+        button.addActionListener(e -> wasClick = true);
+        button.doClick();
+
+        assertTrue(wasClick);
+    }
 }
