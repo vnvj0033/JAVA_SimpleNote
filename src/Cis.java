@@ -11,6 +11,8 @@ public class Cis {
 
     private CoursePanel panel = new CoursePanel();
 
+    KeyRelease key = new KeyRelease();
+
     public static void main(String[] args) {
         new Cis().show();
     }
@@ -20,6 +22,7 @@ public class Cis {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(panel);
         addButtonClickListener();
+        addSearchListener();
     }
 
     public void show() {
@@ -56,6 +59,23 @@ public class Cis {
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == 10)
                     addButton.doClick();
+            }
+        });
+    }
+    private void addSearchListener() {
+        JTextField field = panel.getSearchTextField();
+        JTable table = panel.getTable();
+        CourseTableModel model = panel.getTableModel();
+
+        key.setSearchFiled(field);
+        key.setTable(table);
+        key.setModel(model);
+
+        field.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                key.releas();
             }
         });
     }

@@ -10,6 +10,10 @@ public class CourseTableModel extends AbstractTableModel {
         fireTableRowsInserted(courses.size() - 1, courses.size());
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
     public Course getCourse(int index) {
         return courses.get(index);
     }

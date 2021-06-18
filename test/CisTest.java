@@ -61,40 +61,49 @@ public class CisTest {
         assertEquals(model.getCourse(0).getText(), "ATDD");
         assertEquals(field.getText(), "");
     }
+    /*
+    given:
+    123이 저장되어 있다면 => courses.add("123")
 
+    when:
+    1을 넣고 search를 하면 => field에 1을 넣는다. field.setText(1)
+    search() => field 값을 확인해야지. 그걸 가지고 찾으면 되는거 아냐...
+
+    then:
+    searchResult...
+    123이 나온다.
+    검색 결과가 하나다.
+     */
     @Test
-    void testSearchListener() throws AWTException {
-        Robot robot = new Robot();
-
+    void testSearchListener() {
         CoursePanel panel = cis.getPanel();
 
         JButton button = panel.getAddButton();
         JTextField field = panel.getDepartmentTextField();
+        JTable table = panel.getTable();
+        CourseTableModel model = panel.getTableModel();
 
         field.setText("ATDD");
         button.doClick();
 
         JTextField searchField = panel.getDepartmentTextField();
 
-        Point point = searchField.getLocationOnScreen();
-        robot.mouseMove(point.x, point.y);
+        KeyRelease keyRelease = new KeyRelease();
+        keyRelease.setSearchFiled(searchField);
+        keyRelease.setTable(table);
+        keyRelease.setModel(model);
 
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        searchField.setText("1");
 
-        robot.keyPress('1');
-        robot.keyRelease('1');
+        keyRelease.releas();
 
-        assertEquals(panel.getTableModel().getRowCount(), 0);
+        assertEquals(table.getModel().getRowCount(), 0);
 
-        searchField.setText("");
+        searchField.setText("A");
 
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        keyRelease.releas();
+        assertEquals(table.getModel().getRowCount(), 1);
 
-        robot.keyPress('A');
-        robot.keyRelease('A');
-
-        assertEquals(panel.getTableModel().getRowCount(), 1);
+        assertEquals(((CourseTableModel) table.getModel()).getCourse(0).getText(), "ATDD");
     }
 }
