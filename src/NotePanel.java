@@ -9,7 +9,7 @@ import static java.awt.GridBagConstraints.HORIZONTAL;
 public class CoursePanel extends JPanel {
     public static final String NAME = "course panel";
 
-    private CourseTableModel tableModel = new CourseTableModel();
+    private TodoTableModel tableModel = new TodoTableModel();
 
     private JTable table = new JTable(tableModel);
     private JButton addButton = new JButton("Add");
@@ -103,7 +103,7 @@ public class CoursePanel extends JPanel {
         return addButton;
     }
 
-    public CourseTableModel getTableModel() {
+    public TodoTableModel getTableModel() {
         return tableModel;
     }
 

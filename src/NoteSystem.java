@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Cis {
+public class TodoSystem {
     static final String TITLE = "course info system";
     static final int WIDTH = 300;
     static final int HEIGHT = 400;
@@ -14,10 +14,10 @@ public class Cis {
     KeyRelease key = new KeyRelease();
 
     public static void main(String[] args) {
-        new Cis().show();
+        new TodoSystem().show();
     }
 
-    Cis() {
+    TodoSystem() {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(panel);
@@ -40,7 +40,7 @@ public class Cis {
     private void addButtonClickListener() {
         JButton addButton = panel.getAddButton();
         JTextField textField = panel.getDepartmentTextField();
-        CourseTableModel model = panel.getTableModel();
+        TodoTableModel model = panel.getTableModel();
         JTable table = panel.getTable();
 
         addButton.addActionListener(e -> {
@@ -49,7 +49,7 @@ public class Cis {
                 return;
 
             panel.getSearchTextField().setText(null);
-            model.add(new Course(textField.getText()));
+            model.add(new Todo(textField.getText()));
             table.setModel(model);
             textField.setText(null);
         });
@@ -65,7 +65,7 @@ public class Cis {
     private void addSearchListener() {
         JTextField field = panel.getSearchTextField();
         JTable table = panel.getTable();
-        CourseTableModel model = panel.getTableModel();
+        TodoTableModel model = panel.getTableModel();
 
         key.setSearchFiled(field);
         key.setTable(table);

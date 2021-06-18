@@ -6,31 +6,31 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CisTest {
-    Cis cis;
+public class TotoSystemTest {
+    TodoSystem todoSys;
     JFrame frame;
     KeyRelease keyRelease;
     JTable table;
 
     @BeforeEach
     void setUp() {
-        cis = new Cis();
-        frame = cis.getFrame();
+        todoSys = new TodoSystem();
+        frame = todoSys.getFrame();
         keyRelease = new KeyRelease();
-        table = cis.getPanel().getTable();
+        table = todoSys.getPanel().getTable();
     }
 
     @Test
     void testCreate() {
-        assertEquals(frame.getTitle(), Cis.TITLE);
+        assertEquals(frame.getTitle(), TodoSystem.TITLE);
         assertEquals(frame.getDefaultCloseOperation(), JFrame.DISPOSE_ON_CLOSE);
-        assertEquals(frame.getWidth(), Cis.WIDTH);
-        assertEquals(frame.getHeight(), Cis.HEIGHT);
+        assertEquals(frame.getWidth(), TodoSystem.WIDTH);
+        assertEquals(frame.getHeight(), TodoSystem.HEIGHT);
     }
 
     @Test
     void testShow() {
-        cis.show();
+        todoSys.show();
         frame.setVisible(true);
 
         assertTrue(frame.isVisible());
@@ -50,16 +50,16 @@ public class CisTest {
 
     @Test
     void testAddCourse() {
-        CoursePanel panel = cis.getPanel();
+        CoursePanel panel = todoSys.getPanel();
 
         JButton button = panel.getAddButton();
         JTextField field = panel.getDepartmentTextField();
-        CourseTableModel model = panel.getTableModel();
+        TodoTableModel model = panel.getTableModel();
 
         field.setText("ATDD");
         button.doClick();
 
-        assertEquals(model.getCourse(0).getText(), "ATDD");
+        assertEquals(model.getTodo(0).getText(), "ATDD");
         assertEquals(field.getText(), "");
     }
     /*
@@ -79,11 +79,11 @@ public class CisTest {
 
     @Test
     void testSearchListener() {
-        CoursePanel panel = cis.getPanel();
+        CoursePanel panel = todoSys.getPanel();
 
         JButton button = panel.getAddButton();
         JTextField field = panel.getDepartmentTextField();
-        CourseTableModel model = panel.getTableModel();
+        TodoTableModel model = panel.getTableModel();
         JTextField searchField = panel.getDepartmentTextField();
 
         field.setText("ATDD");
@@ -97,7 +97,7 @@ public class CisTest {
         assertFiledInput(searchField, "1", 0);
         assertFiledInput(searchField, "A", 1);
 
-        assertEquals(((CourseTableModel) table.getModel()).getCourse(0).getText(), "ATDD");
+        assertEquals(((TodoTableModel) table.getModel()).getTodo(0).getText(), "ATDD");
     }
 
     private void textInput(JTextField field, String text) {

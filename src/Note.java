@@ -1,10 +1,10 @@
-public class Course {
+public class Todo {
 
     private String text = "";
 
-    Course(){}
+    Todo(){}
 
-    Course(String text) {
+    Todo(String text) {
         setText(text);
     }
 
