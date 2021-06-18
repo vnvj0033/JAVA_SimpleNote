@@ -3,14 +3,11 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import java.awt.*;
 
-import static java.awt.GridBagConstraints.LINE_END;
-import static javax.swing.SwingConstants.CENTER;
-import static javax.swing.SwingConstants.HORIZONTAL;
-import static javax.swing.TransferHandler.NONE;
+import static java.awt.GridBagConstraints.*;
+import static java.awt.GridBagConstraints.HORIZONTAL;
 
 public class CoursePanel extends JPanel {
     public static final String NAME = "course panel";
-
 
     private CourseTableModel tableModel = new CourseTableModel();
 
@@ -20,6 +17,7 @@ public class CoursePanel extends JPanel {
     private JTextField searchField = new JTextField();
     private JLabel departmentLabel = new JLabel("Department");
     private JLabel searchLabel = new JLabel("Search");
+
 
     CoursePanel() {
         setName(NAME);

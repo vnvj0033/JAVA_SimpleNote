@@ -7,6 +7,8 @@ public class Cis {
 
     private JFrame frame = new JFrame(TITLE);
 
+    private CoursePanel panel = new CoursePanel();
+
     public static void main(String[] args) {
         new Cis().show();
     }
@@ -14,6 +16,7 @@ public class Cis {
     Cis() {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(panel);
     }
 
     public void show() {
