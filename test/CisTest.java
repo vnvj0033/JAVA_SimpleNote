@@ -9,8 +9,9 @@ public class CisTest {
     @Test
     void testCreate() {
         Cis cis = new Cis();
+        JFrame frame = cis.getFrame();
 
-        assertEquals(cis.getTitle(), Cis.TITLE);
+        assertEquals(frame.getTitle(), Cis.TITLE);
 
         assertEquals(frame.getWidth(), Cis.WIDTH);
         assertEquals(frame.getHeight(), Cis.HEIGHT);

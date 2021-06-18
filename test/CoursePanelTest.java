@@ -1,5 +1,10 @@
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CoursePanelTest {
 
     @Test
@@ -8,10 +13,6 @@ public class CoursePanelTest {
         panel.setVisible(true);
 
         assertEquals(panel.getName(), CoursePanel.NAME);
-
-        CourseTableModel model = panel.getTableModel();
-        JTable table = panel.getTable();
-        assertEquals(table.getModel(), model);
 
         JButton button = panel.getAddButton();
         assertEquals(button.getText(), "Add");

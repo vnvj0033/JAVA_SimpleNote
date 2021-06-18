@@ -6,10 +6,13 @@ public class CourseTest {
 
     @Test
     void testCreate() {
+        String departmentName = "TDD^^";
         Course course = new Course();
+        Course course1 = new Course(departmentName);
 
-        course.setText("TDD");
+        course.setText(departmentName);
 
-        assertEquals(course.getText(), "TDD");
+        assertEquals(course.getText(), departmentName);
+        assertEquals(course1.getText(), departmentName);
     }
 }

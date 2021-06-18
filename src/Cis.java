@@ -21,6 +21,6 @@ public class Cis {
     }
 
     public JFrame getFrame() {
-        return frame
+        return frame;
     }
 }
