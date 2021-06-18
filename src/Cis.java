@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Cis {
     static final String TITLE = "course info system";
@@ -17,6 +19,7 @@ public class Cis {
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(panel);
+        addButtonClickListener();
     }
 
     public void show() {
@@ -25,5 +28,34 @@ public class Cis {
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public CoursePanel getPanel() {
+    }
+
+    private void addButtonClickListener() {
+        JButton addButton = panel.getAddButton();
+        JTextField textField = panel.getDepartmentTextField();
+        CourseTableModel model = panel.getTableModel();
+        JTable table = panel.getTable();
+
+        addButton.addActionListener(e -> {
+
+            if (textField.getText().length() == 0)
+                return;
+
+            panel.getSearchTextField().setText(null);
+            model.add(new Course(textField.getText()));
+            table.setModel(model);
+            textField.setText(null);
+        });
+
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == 10)
+                    addButton.doClick();
+            }
+        });
     }
 }

@@ -42,4 +42,19 @@ public class CisTest {
 
         assertTrue(wasClick);
     }
+
+    @Test
+    void testAddCourse() {
+        CoursePanel panel = cis.getPanel();
+
+        JButton button = panel.getAddButton();
+        JTextField field = panel.getDepartmentTextField();
+        CourseTableModel model = panel.getTableModel();
+
+        field.setText("ATDD");
+        button.doClick();
+
+        assertEquals(model.getCourse(0).getText(), "ATDD");
+        assertEquals(field.getText(), "");
+    }
 }
