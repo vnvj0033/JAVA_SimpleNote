@@ -3,20 +3,21 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CisTest {
     Cis cis;
     JFrame frame;
+    KeyRelease keyRelease;
+    JTable table;
 
     @BeforeEach
     void setUp() {
         cis = new Cis();
         frame = cis.getFrame();
+        keyRelease = new KeyRelease();
+        table = cis.getPanel().getTable();
     }
 
     @Test
@@ -74,36 +75,38 @@ public class CisTest {
     123이 나온다.
     검색 결과가 하나다.
      */
+
+
     @Test
     void testSearchListener() {
         CoursePanel panel = cis.getPanel();
 
         JButton button = panel.getAddButton();
         JTextField field = panel.getDepartmentTextField();
-        JTable table = panel.getTable();
         CourseTableModel model = panel.getTableModel();
+        JTextField searchField = panel.getDepartmentTextField();
 
         field.setText("ATDD");
         button.doClick();
 
-        JTextField searchField = panel.getDepartmentTextField();
 
-        KeyRelease keyRelease = new KeyRelease();
         keyRelease.setSearchFiled(searchField);
         keyRelease.setTable(table);
         keyRelease.setModel(model);
 
-        searchField.setText("1");
-
-        keyRelease.releas();
-
-        assertEquals(table.getModel().getRowCount(), 0);
-
-        searchField.setText("A");
-
-        keyRelease.releas();
-        assertEquals(table.getModel().getRowCount(), 1);
+        assertFiledInput(searchField, "1", 0);
+        assertFiledInput(searchField, "A", 1);
 
         assertEquals(((CourseTableModel) table.getModel()).getCourse(0).getText(), "ATDD");
+    }
+
+    private void textInput(JTextField field, String text) {
+        field.setText(text);
+        keyRelease.releas();
+    }
+
+    private void assertFiledInput(JTextField field, String text, int size) {
+        textInput(field, text);
+        assertEquals(table.getModel().getRowCount(), size);
     }
 }
